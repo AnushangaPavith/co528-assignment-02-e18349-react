@@ -1,143 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React App with CDN</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Angle Selector Tool React</title>
     <!-- Import React and ReactDOM via CDN -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <!-- Babel for JSX transformation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body>
+    <!-- Import custom styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!-- Root div for the React app -->
     <div id="root"></div>
 
-    <!-- React Script -->
-    <script type="text/babel">
-        // React Component
-        function App() {
-            const [angle, setAngle] = React.useState(180);
-
-            const handleInputChange = (e) => {
-                let value = e.target.value;
-
-                // Remove leading zeros
-                if (value.length > 1 && value[0] === '0') {
-                    value = value.replace(/^0+/, '');
-                }
-
-                value = Number(value);
-
-                if (value > 360) {
-                    value = value % 360;
-                }
-                setAngle(value);
-            };
-
-            const handleSliderChange = (e) => {
-                setAngle(Number(e.target.value));
-            };
-
-            const handleRadioChange = (e) => {
-                setAngle(Number(e.target.value));
-            };
-
-            return (
-                <div className="app-container">
-                    <div className="topic">
-                        <h2>Angle Selector Tool React</h2>
-                    </div>
-                    <div className="container">
-                        <input
-                            type="number"
-                            value={angle}
-                            onChange={handleInputChange}
-                            min="0"
-                        />
-                        <input
-                            type="range"
-                            min="0"
-                            max="360"
-                            value={angle}
-                            onChange={handleSliderChange}
-                        />
-                        <div className="radio-buttons">
-                            {[0, 45, 60, 90, 180].map((value) => (
-                                <label key={value}>
-                                    <input
-                                        type="radio"
-                                        name="angle"
-                                        value={value}
-                                        checked={angle === value}
-                                        onChange={handleRadioChange}
-                                    />
-                                    {value}°
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // Render React App to the DOM
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
-
-    <!-- Styling -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .app-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-
-        .topic {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input[type="number"] {
-            margin-bottom: 20px;
-            padding: 5px;
-            width: 100px;
-        }
-
-        input[type="range"] {
-            margin-bottom: 20px;
-            width: 200px;
-        }
-
-        .radio-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        label {
-            margin: 0 5px;
-        }
-    </style>
-</body>
+    <!-- Import custom React components -->
+    <script type="text/babel" src="Header.js"></script>
+    <script type="text/babel" src="RadioButtons.js"></script>
+    <script type="text/babel" src="App.js"></script>
+  </body>
 </html>
